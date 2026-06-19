@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casamento Ana & João</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=1.3" />
+</head>
+<body>
+  <!-- Corner decorative leaves background -->
+  <div class="decor-leaf decor-leaf-top-left"></div>
+  <div class="decor-leaf decor-leaf-bottom-right"></div>
+
+  <header class="site-header">
+
+    <nav class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#localizacao">Local</a>
+      <a href="#presentes">Presentes</a>
+      <a href="#rsvp">RSVP</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="hero-label">Nosso amor merece uma celebração</span>
+        <h2>Casamento de <br> Ana & João</h2>
+        <p>Obrigado por visitar nossa página. Aqui você pode escolher um presente simbólico e contribuir com nosso sonho sem taxas de intermediários.</p>
+        <div class="hero-meta">
+          <span>20 de setembro de 2026</span>
+          <span>Laggus Residencial Náutico</span>
+        </div>
+        <a class="button-primary" href="#presentes">Ver presentes</a>
+      </div>
+      <div class="hero-image-wrapper">
+        <img src="images/capa.JPG" alt="Foto do casal" />
+      </div>
+    </section>
+
+    <section id="sobre" class="section about">
+      <div class="section-header">
+        <span>Nosso conto</span>
+        <h2>Sobre Ana e João</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>A história começou com olhares trocados, risadas e planos compartilhados. Agora, convidamos você para ser parte desta fase incrível da nossa vida.</p>
+          <p>Ao invés de presentes tradicionais, criamos uma loja simbólica para que nossos convidados possam escolher contribuições especiais para o casal.</p>
+        </div>
+        <div class="about-details">
+          <div>
+            <strong>Data</strong>
+            <p>20 de setembro de 2026, às 10:30h (Domingo)</p>
+          </div>
+          <div>
+            <strong>Local</strong>
+            <p>Laggus Residencial Náutico — Campo Largo, PR</p>
+          </div>
+          <div>
+            <strong>Estilo</strong>
+            <p>Cerimônia romântica com almoço e festa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="localizacao" class="section location">
+      <div class="section-header">
+        <span>Como chegar</span>
+        <h2>Local do Evento</h2>
+      </div>
+      <div class="location-grid">
+        <div class="location-info">
+          <img src="images/desenho_mapa.jpeg" alt="Ilustração do Laggus Residencial Náutico" class="venue-illustration" />
+          <div class="location-text">
+            <h3>Laggus Residencial Náutico</h3>
+            <p class="address">Rua Silvio Dallagrana, 8000 — Campo Largo, PR</p>
+            <p>A cerimônia iniciará pontualmente às <strong>10:30h</strong> do dia <strong>20 de setembro de 2026</strong>. Recomendamos que os convidados se organizem para chegar com cerca de 15 minutos de antecedência para apreciar a bela paisagem à beira do lago e se acomodarem confortavelmente.</p>
+            <a href="https://maps.app.goo.gl/ynVdtyk14VEHixQLA" target="_blank" rel="noopener" class="button-secondary map-link">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="map-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              Abrir no Google Maps
+            </a>
+          </div>
+        </div>
+        <div class="location-map">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.0456106636737!2d-49.4357497!3d-25.436730599999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ece4857b29a21b%3A0x8677c77d446dc34e!2sLaggus%20Residencial%20N%C3%A1utico!5e0!3m2!1spt-BR!2sbr!4v1718300000000!5m2!1spt-BR!2sbr" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="presentes" class="section gifts">
+      <div class="section-header">
+        <span>Escolha com carinho</span>
+        <h2>Loja de presentes</h2>
+      </div>
+      <p class="section-intro">Cada item representa um gesto de apoio: ao final, vamos receber apenas o valor como doação, sem taxa de venda.</p>
+      <div id="productsGrid" class="products-grid"></div>
+    </section>
+
+    <aside class="cart-panel" id="cartPanel">
+      <div class="cart-header">
+        <h3>Seu carrinho</h3>
+        <button id="closeCartButton" type="button" class="close-button">×</button>
+      </div>
+      <div id="cartItems" class="cart-items">
+        <p class="empty-state">Seu carrinho está vazio. Adicione um presente para continuar.</p>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total</span>
+          <strong id="cartTotal">R$ 0,00</strong>
+        </div>
+        <button id="checkoutButton" class="button-secondary" type="button">Finalizar compra</button>
+      </div>
+    </aside>
+
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <section class="checkout-modal" id="checkoutModal" aria-hidden="true">
+      <div class="checkout-card">
+        <div class="checkout-header">
+          <h3>Escolha seu pagamento</h3>
+          <button id="closeModalButton" type="button" class="close-button">×</button>
+        </div>
+        <div class="checkout-body">
+          <div class="payment-options">
+            <strong>Pagamento via PIX</strong>
+          </div>
+
+          <div id="pixSection" class="payment-section">
+            <p>Pague via PIX usando o QR code (imagem abaixo) ou a chave:</p>
+            <div class="pix-card">
+              <img id="pixQrImage" src="images/qrcode.png" alt="QR code PIX" class="pix-code" />
+              <div class="pix-info">
+                <strong>Chave PIX:</strong>
+                <div class="pix-key-container">
+                  <span id="pixKey">casamento@exemplo.com</span>
+                  <button type="button" id="copyPixKeyButton" class="copy-button">Copiar</button>
+                </div>
+                <strong>Valor:</strong>
+                <span id="pixTotal">R$ 0,00</span>
+              </div>
+            </div>
+            <p class="payment-note">O QR acima é estático — o convidado pode escanear e pagar qualquer valor desejado.</p>
+            <div class="checkout-actions">
+              <button id="confirmPixButton" class="button-primary" type="button">Confirmar pagamento PIX</button>
+              <button id="sendWhatsAppButton" class="button-secondary" type="button">Enviar pedido por WhatsApp</button>
+            </div>
+          </div>
+
+
+          <div id="successMessage" class="success-message hidden">
+            <h4>Obrigado!</h4>
+            <p>Seu presente foi registrado com sucesso. Estamos muito felizes em contar com você nessa data tão especial.</p>
+            <button id="closeSuccessButton" class="button-secondary" type="button">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rsvp" class="section rsvp">
+      <div class="section-header">
+        <span>Confirme sua presença</span>
+        <h2>RSVP</h2>
+      </div>
+      <div class="rsvp-content">
+        <p>Se você deseja confirmar presença ou enviar mensagem ao casal, use o e-mail abaixo ou fale diretamente com nossos padrinhos.</p>
+        <a href="mailto:contato@casamentoexemplo.com" class="button-secondary">Enviar mensagem</a>
+      </div>
+    </section>
+
+    <section id="faq" class="section faq">
+      <div class="section-header">
+        <span>Dúvidas</span>
+        <h2>Perguntas frequentes</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Os presentes são reais?</summary>
+          <p>Não. Os itens são simbólicos. Ao final usaremos o valor total como uma contribuição financeira para a vida do casal.</p>
+        </details>
+        <details>
+          <summary>Como funciona o PIX?</summary>
+          <p>Ao escolher PIX, você recebe uma chave e um QR code. Basta pagar pelo app do seu banco e enviar o comprovante.</p>
+        </details>
+        <details>
+          <summary>Posso enviar um presente presencialmente?</summary>
+          <p>Sim, entre em contato pelo e-mail e combinamos o melhor jeito para receber sua mensagem e carinho.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="brand-mark" style="margin: 0 auto 16px;">A & J</div>
+    <p>Obrigado por fazer parte dessa história. 💍</p>
+  </footer>
+
+  <!-- Floating Action Buttons -->
+  <div class="floating-actions">
+    <button class="back-to-top-button" id="backToTopButton" type="button" aria-label="Voltar ao topo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+    </button>
+    <button class="cart-button-floating" id="cartButton" type="button">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cart-icon"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      <span id="cartCount">0</span>
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
