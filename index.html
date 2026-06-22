@@ -140,7 +140,21 @@
           </div>
 
           <div id="pixSection" class="payment-section">
-            <p>Pague via PIX usando o QR code (imagem abaixo) ou a chave:</p>
+            <div class="field-group">
+              <label for="guestName">Seu nome <span style="color:var(--accent)">*</span></label>
+              <input type="text" id="guestName" placeholder="Digite seu nome para personalizar" autocomplete="name" />
+            </div>
+
+            <div class="payment-steps">
+              <p><strong>Como funciona:</strong></p>
+              <ol>
+                <li>Abra o app do seu banco</li>
+                <li>Escaneie o QR code ao lado <strong>ou</strong> copie a chave PIX</li>
+                <li>Pague o valor de <strong id="pixTotalStep">R$ 0,00</strong></li>
+                <li>Volte aqui e clique em <strong>"Enviar pedido por WhatsApp"</strong> para nos avisar</li>
+              </ol>
+            </div>
+
             <div class="pix-card">
               <img id="pixQrImage" src="images/qrcode.png" alt="QR code PIX" class="pix-code" />
               <div class="pix-info">
@@ -153,17 +167,17 @@
                 <span id="pixTotal">R$ 0,00</span>
               </div>
             </div>
-            <p class="payment-note">O QR acima é estático — o convidado pode escanear e pagar qualquer valor desejado.</p>
+            <p class="payment-note">Qualquer valor é bem-vindo — o QR aceita o valor que você escolher.</p>
             <div class="checkout-actions">
-              <button id="confirmPixButton" class="button-primary" type="button">Confirmar pagamento PIX</button>
-              <button id="sendWhatsAppButton" class="button-secondary" type="button">Enviar pedido por WhatsApp</button>
+              <button id="sendWhatsAppButton" class="button-primary" type="button">Enviar pedido por WhatsApp</button>
+              <button id="confirmPixButton" class="button-secondary" type="button">Já paguei</button>
             </div>
           </div>
 
 
           <div id="successMessage" class="success-message hidden">
-            <h4>Obrigado!</h4>
-            <p>Seu presente foi registrado com sucesso. Estamos muito felizes em contar com você nessa data tão especial.</p>
+            <h4 id="successTitle">Obrigado, <span id="successName">amigo</span>! 💚</h4>
+            <p id="successText">Seu gesto de carinho vai ajudar a construir o lar que estamos sonhando juntos. Que possamos celebrar muitos momentos especiais ao seu lado. Com todo o nosso carinho, Ana & João.</p>
             <button id="closeSuccessButton" class="button-secondary" type="button">Fechar</button>
           </div>
         </div>

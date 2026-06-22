@@ -59,6 +59,7 @@ const confirmPixButton = document.getElementById("confirmPixButton");
 const sendWhatsAppButton = document.getElementById("sendWhatsAppButton");
 const successMessage = document.getElementById("successMessage");
 const closeSuccessButton = document.getElementById("closeSuccessButton");
+const guestNameInput = document.getElementById("guestName");
 
 function formatCurrency(value) {
   return value.toLocaleString("pt-BR", {
@@ -176,6 +177,7 @@ function openCheckout() {
   checkoutModal.classList.add("active");
   modalBackdrop.classList.add("active");
   checkoutModal.setAttribute("aria-hidden", "false");
+  if (guestNameInput) guestNameInput.value = "";
   updatePixSection();
   successMessage.classList.add("hidden");
   pixSection.classList.remove("hidden");
@@ -246,6 +248,8 @@ function buildEMVPixPayload(pixKey, merchantName='ANA E JOAO', merchantCity='CAM
 function updatePixSection() {
   const total = calculateTotal();
   pixTotal.textContent = formatCurrency(total);
+  const pixTotalStep = document.getElementById("pixTotalStep");
+  if (pixTotalStep) pixTotalStep.textContent = formatCurrency(total);
   if (!pixQrImage) return;
   const pixKey = document.getElementById('pixKey') ? document.getElementById('pixKey').textContent.trim() : '09723193957';
   const payload = buildEMVPixPayload(pixKey, 'ANA E JOAO', 'CAMPO LARGO', total);
@@ -258,22 +262,34 @@ function updatePixSection() {
 
 
 function confirmPixPayment() {
-  // In a real integration, verify payment gateway response. Here assume success and clear cart.
-  showSuccessMessage("PIX", calculateTotal());
+  const name = guestNameInput ? guestNameInput.value.trim() : "";
+  if (!name) {
+    alert("Por favor, digite seu nome antes de confirmar.");
+    guestNameInput.focus();
+    return;
+  }
+  showSuccessMessage(name, calculateTotal());
 }
 
 function buildOrderText() {
   const items = Object.values(cart);
   if (items.length === 0) return "";
+  const name = guestNameInput ? guestNameInput.value.trim() : "Convidado";
   const lines = items.map(item => `- ${item.name} x${item.quantity} (${formatCurrency(item.price * item.quantity)})`);
   const total = formatCurrency(calculateTotal());
   const pixKey = document.getElementById("pixKey").textContent.trim();
-  const message = `Olá Ana e João - Pedido:\n${lines.join("\n")}\nTotal: ${total}\nChave PIX: ${pixKey}\n\nEnviei comprovante aqui assim que pagar. Obrigado!`;
+  const message = `Olá Ana e João! 💚\n\nAqui é ${name}. Acabei de separar um presente para vocês:\n${lines.join("\n")}\nTotal: ${total}\n\nChave PIX que usei: ${pixKey}\n\nSegue o comprovante aqui! Que Deus abençoe muito o casamento de vocês! 🙏`;
   return message;
 }
 
 function sendOrderWhatsApp() {
-  const number = '5541997273744'; // número fornecido
+  const number = '5541997273744';
+  const name = guestNameInput ? guestNameInput.value.trim() : "";
+  if (!name) {
+    alert("Por favor, digite seu nome antes de enviar.");
+    if (guestNameInput) guestNameInput.focus();
+    return;
+  }
   const text = buildOrderText();
   if (!text) {
     alert('Adicione pelo menos um item ao carrinho antes de enviar por WhatsApp.');
@@ -281,29 +297,20 @@ function sendOrderWhatsApp() {
   }
   const url = `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
   window.open(url, '_blank');
+  showSuccessMessage(name, calculateTotal());
 }
 
-function confirmCardPayment() {
-  const name = document.getElementById("cardName").value.trim();
-  const number = document.getElementById("cardNumber").value.trim();
-  const expiry = document.getElementById("cardExpiry").value.trim();
-  const cvc = document.getElementById("cardCvc").value.trim();
-
-  if (!name || !number || !expiry || !cvc) {
-    alert("Preencha todos os dados do cartão para continuar.");
-    return;
-  }
-
-  showSuccessMessage("cartão", calculateTotal());
-}
-
-function showSuccessMessage(method, total) {
+function showSuccessMessage(guestName, total) {
   const totalInfo = formatCurrency(total);
-  successMessage.querySelector("h4").textContent = "Obrigado!";
-  successMessage.querySelector("p").textContent = `Seu presente via ${method} no valor de ${totalInfo} foi registrado. Muito obrigado por estar conosco.`;
+  const nameEl = document.getElementById("successName");
+  if (nameEl) nameEl.textContent = guestName;
+  const textEl = document.getElementById("successText");
+  if (textEl) {
+    textEl.textContent = `Seu presente de ${totalInfo} vai ajudar a construir o lar que estamos sonhando juntos. Que possamos celebrar muitos momentos especiais ao seu lado. Com todo o nosso carinho, Ana & João. 💚`;
+  }
   pixSection.classList.add("hidden");
   if (checkoutHeaderTitle) {
-    checkoutHeaderTitle.textContent = "Pagamento Confirmado!";
+    checkoutHeaderTitle.textContent = "Obrigado!";
   }
   
   successMessage.classList.remove("hidden");
