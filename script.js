@@ -1,40 +1,29 @@
 const products = [
-  {
-    id: "champagne",
-    name: "Brinde de Champagne",
-    price: 180.0,
-    description: "Nos ajude a celebrar com um brinde elegante após a cerimônia.",
-  },
-  {
-    id: "jantar",
-    name: "Jantar romântico",
-    price: 260.0,
-    description: "Contribua para a experiência gastronômica especial do casal.",
-  },
-  {
-    id: "decoracao",
-    name: "Decoração floral",
-    price: 220.0,
-    description: "Ajude a compor o cenário com flores, velas e luz suave.",
-  },
-  {
-    id: "lua",
-    name: "Lua de mel",
-    price: 540.0,
-    description: "Um gesto para deixar a lua de mel ainda mais inesquecível.",
-  },
-  {
-    id: "casahref",
-    name: "Lar dos sonhos",
-    price: 320.0,
-    description: "Contribuição para mobiliar o novo lar com carinho.",
-  },
-  {
-    id: "gastronomia",
-    name: "Experiência gastronômica",
-    price: 210.0,
-    description: "Ajude a reservar uma experiência culinária exclusiva para o casal.",
-  },
+  { id: 'conjunto-panelas', name: 'Conjunto de panelas', price: 349.00, description: 'Para fazer as marmitas da semana' },
+  { id: 'kitchenaid', name: 'Kitchenaid', price: 288.00, description: 'Cota para o noivo ter a tão sonhada Batedeira orbital da Kitchenaid' },
+  { id: 'passagem-argentina', name: 'Passagem para Argentina', price: 563.00, description: 'Para que os noivos não precisem ir de carona' },
+  { id: 'aliancas', name: 'Alianças de Casamento', price: 178.00, description: 'Ajude no símbolo da nossa união' },
+  { id: 'lava-seca', name: 'Lava e seca', price: 288.00, description: 'Cota para a noiva ter a tão sonhada Lava e seca' },
+  { id: 'aquecedor', name: 'Aquecedor', price: 124.00, description: 'Contra o frio de Curitiba' },
+  { id: 'cobertor', name: 'Cobertor', price: 159.00, description: 'Para a noiva que está sempre coberta de razão' },
+  { id: 'primeiro-lugar-fila', name: 'Primeiro lugar na fila', price: 411.00, description: 'Privilégio de se servir por primeiro no buffet do casamento' },
+  { id: 'sorte-no-amor', name: 'Sorte no amor', price: 99.00, description: 'Lugar prioritário para pegar o buquê da noiva' },
+  { id: 'luminaria', name: 'Luminária', price: 197.00, description: 'Abajur para sala de estar' },
+  { id: 'aspirador-robo', name: 'Aspirador robô', price: 280.00, description: 'Diminua as crises de rinite do noivo' },
+  { id: 'limpador-vapor', name: 'Limpador a vapor', price: 155.00, description: 'Garanta a limpeza do nosso box' },
+  { id: 'cozinha-nova', name: 'Cozinha nova', price: 299.00, description: 'Cota para reformar nossa cozinha' },
+  { id: 'geladeira', name: 'Geladeira', price: 699.00, description: 'Cota para garantir a cerveja gelada para as visitas' },
+  { id: 'ingresso-orquestra', name: 'Ingresso para Orquestra', price: 396.00, description: 'Espetáculo da Orquestra de Buenos Aires no Teatro Colón' },
+  { id: 'show-tango', name: 'Show de Tango', price: 530.00, description: 'Jantar, open bar e show de tango argentino' },
+  { id: 'viagem-salta', name: 'Viagem em Salta', price: 255.00, description: 'Visita ao deserto de Sal na Argentina' },
+  { id: 'passeio-unico', name: 'Passeio único', price: 355.00, description: 'Passeio para Colina de 14 cores na Argentina' },
+  { id: 'bons-vinhos', name: 'Bons vinhos', price: 210.00, description: 'Degustação em vinícola argentina' },
+  { id: 'delta-del-tigre', name: 'Delta del Tigre', price: 335.00, description: 'Passeio de barco por Buenos Aires' },
+  { id: 'jantar-romantico', name: 'Jantar Romântico', price: 370.00, description: 'Jantar romântico na primeira noite de lua de mel' },
+  { id: 'bons-drinks', name: 'Bons drinks', price: 102.00, description: 'Drinks em Puerto Madero' },
+  { id: 'visita-museu', name: 'Visita ao Museu', price: 115.00, description: 'Ingresso pra ver o Abaporu no MALBA' },
+  { id: 'visita-bombonera', name: 'Visita a La Bombonera', price: 202.00, description: 'Ingressos para conhecer o estádio e secar os hermanos' },
+  { id: 'cafe-da-tarde', name: 'Café da Tarde', price: 108.00, description: 'Empanadas argentinas e café' }
 ];
 
 const cart = {};
@@ -86,7 +75,7 @@ function renderProducts() {
         <h3>${product.name}</h3>
         <p>${product.description}</p>
         <span class="price">${formatCurrency(product.price)}</span>
-        <button type="button" data-product-id="${product.id}">Adicionar ao carrinho</button>
+        <button type="button" data-product-id="${product.id}" class="add-to-cart-btn">Adicionar</button>
       </article>
     `
     )
@@ -204,19 +193,72 @@ function closeCheckout() {
   }
 }
 
+// Helper: TLV builder
+function tlv(id, value){
+  const v = String(value);
+  const len = String(v.length).padStart(2,'0');
+  return id + len + v;
+}
+
+// CRC16-CCITT (XModem/CCITT-FALSE) with poly 0x1021, initial 0xFFFF
+function crc16Ccitt(str){
+  let crc = 0xFFFF;
+  for(let i=0;i<str.length;i++){
+    crc ^= str.charCodeAt(i) << 8;
+    for(let j=0;j<8;j++){
+      crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) & 0xFFFF : (crc << 1) & 0xFFFF;
+    }
+  }
+  return crc.toString(16).toUpperCase().padStart(4,'0');
+}
+
+function buildEMVPixPayload(pixKey, merchantName='ANA E JOAO', merchantCity='CAMPO LARGO', amount){
+  // Based on BR Lgpd / EMV static structure commonly used for PIX QR
+  const gui = tlv('00','BR.GOV.BCB.PIX');
+  const key = tlv('01',pixKey);
+  const mai = tlv('26', gui + key);
+
+  const merchantCategory = tlv('52','0000');
+  const currency = tlv('53','986');
+  const amountField = amount ? tlv('54', amount.toFixed(2)) : '';
+  const country = tlv('58','BR');
+  const mName = tlv('59', merchantName.substring(0,25));
+  const mCity = tlv('60', merchantCity.substring(0,15));
+
+  let payload = '';
+  payload += tlv('00','01'); // payload format indicator
+  payload += tlv('01','12'); // point of initiation - dynamic (contains amount)
+  payload += mai;
+  payload += merchantCategory;
+  payload += currency;
+  if(amountField) payload += amountField;
+  payload += country;
+  payload += mName;
+  payload += mCity;
+
+  // CRC placeholder
+  payload += '63' + '04';
+  const crc = crc16Ccitt(payload);
+  payload += crc;
+  return payload;
+}
+
 function updatePixSection() {
   const total = calculateTotal();
   pixTotal.textContent = formatCurrency(total);
-  // Use static QR image; no per-value QR generation
-  if (pixQrImage) {
-    pixQrImage.style.display = 'block';
-  }
+  if (!pixQrImage) return;
+  const pixKey = document.getElementById('pixKey') ? document.getElementById('pixKey').textContent.trim() : 'casamento@exemplo.com';
+  const payload = buildEMVPixPayload(pixKey, 'ANA E JOAO', 'CAMPO LARGO', total);
+  const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(payload)}`;
+  pixQrImage.src = qrApi;
+  pixQrImage.style.display = 'block';
 }
 
 // remove drawPixQrCode - static image used
 
 
 function confirmPixPayment() {
+  // In a real integration, verify payment gateway response. Here assume success and clear cart.
   showSuccessMessage("PIX", calculateTotal());
 }
 
@@ -226,7 +268,7 @@ function buildOrderText() {
   const lines = items.map(item => `- ${item.name} x${item.quantity} (${formatCurrency(item.price * item.quantity)})`);
   const total = formatCurrency(calculateTotal());
   const pixKey = document.getElementById("pixKey").textContent.trim();
-  const message = `Olá Ana & João - Pedido:\n${lines.join("\n")}\nTotal: ${total}\nChave PIX: ${pixKey}\n\nEnviei comprovante aqui assim que pagar. Obrigado!`;
+  const message = `Olá Ana e João - Pedido:\n${lines.join("\n")}\nTotal: ${total}\nChave PIX: ${pixKey}\n\nEnviei comprovante aqui assim que pagar. Obrigado!`;
   return message;
 }
 
@@ -365,6 +407,47 @@ if ('scrollRestoration' in history) {
 window.scrollTo(0, 0);
 
 renderProducts();
+
+// Attach smaller add-to-cart interaction: replace button content with icon on small screens
+function enhanceAddButtons(){
+  document.querySelectorAll('.add-to-cart-btn').forEach(btn=>{
+    // keep text on larger screens, add icon for small
+    function adapt(){
+      if(window.innerWidth < 480){
+        btn.textContent = '';
+        btn.classList.add('has-icon');
+        btn.innerHTML = '<span class="add-icon">+</span>';
+      } else {
+        btn.classList.remove('has-icon');
+        // find product name from dataset to make label concise
+        btn.textContent = 'Adicionar';
+      }
+    }
+    adapt();
+    window.addEventListener('resize', adapt);
+  });
+}
+
+// call after DOM ready
+window.addEventListener('load', ()=>{ renderProducts(); enhanceAddButtons(); });
 updateCartCount();
 renderCart();
 initializeEvents();
+// Countdown to wedding (20 Sep 2026)
+(function setupCountdown(){
+  const el = document.getElementById('countdown');
+  if(!el) return;
+  function update(){
+    const target = new Date('2026-09-20T00:00:00');
+    const now = new Date();
+    let diff = Math.max(0, target - now);
+    const days = Math.floor(diff / (1000*60*60*24));
+    diff -= days*(1000*60*60*24);
+    const hours = Math.floor(diff / (1000*60*60));
+    diff -= hours*(1000*60*60);
+    const minutes = Math.floor(diff / (1000*60));
+    el.textContent = `${days} dias • ${hours}h ${minutes}m até o grande dia`;
+  }
+  update();
+  setInterval(update, 60*1000);
+})();
