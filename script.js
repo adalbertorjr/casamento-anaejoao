@@ -247,7 +247,7 @@ function updatePixSection() {
   const total = calculateTotal();
   pixTotal.textContent = formatCurrency(total);
   if (!pixQrImage) return;
-  const pixKey = document.getElementById('pixKey') ? document.getElementById('pixKey').textContent.trim() : 'casamento@exemplo.com';
+  const pixKey = document.getElementById('pixKey') ? document.getElementById('pixKey').textContent.trim() : '09723193957';
   const payload = buildEMVPixPayload(pixKey, 'ANA E JOAO', 'CAMPO LARGO', total);
   const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(payload)}`;
   pixQrImage.src = qrApi;
@@ -302,11 +302,6 @@ function showSuccessMessage(method, total) {
   successMessage.querySelector("h4").textContent = "Obrigado!";
   successMessage.querySelector("p").textContent = `Seu presente via ${method} no valor de ${totalInfo} foi registrado. Muito obrigado por estar conosco.`;
   pixSection.classList.add("hidden");
-  cardForm.classList.add("hidden");
-  
-  if (paymentOptionsContainer) {
-    paymentOptionsContainer.classList.add("hidden");
-  }
   if (checkoutHeaderTitle) {
     checkoutHeaderTitle.textContent = "Pagamento Confirmado!";
   }
@@ -429,7 +424,7 @@ function enhanceAddButtons(){
 }
 
 // call after DOM ready
-window.addEventListener('load', ()=>{ renderProducts(); enhanceAddButtons(); });
+window.addEventListener('load', ()=>{ enhanceAddButtons(); });
 updateCartCount();
 renderCart();
 initializeEvents();
