@@ -1,0 +1,159 @@
+/* Overrides and layout tweaks requested in 'Ajustes no Site.docx' */
+
+/* Products grid: 5 columns on wide screens */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+}
+
+/* About section: image left, text right aligned */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+}
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.about-text-right {
+  text-align: right;
+  font-family: 'Cormorant Garamond', serif;
+}
+/* Make paragraph text justified for better visual rhythm */
+.about-text-right p { text-align: justify; }
+
+/* PIX and cart sizing adjustments */
+.pix-card { display:flex; gap:12px; align-items:center; }
+.pix-card .pix-info { font-family: 'Cormorant Garamond', serif; font-size: 14px; }
+#pixTotal { font-size: 16px; font-weight: 600; }
+#pixKey { font-size: 13px; }
+
+/* Cart sizing tweaks */
+.cart-total span { font-size: 14px; }
+.cart-total strong { font-size: 18px; }
+.cart-items .cart-item h4 { font-size: 14px; }
+
+/* Cart + checkout panel heading size fixes */
+.cart-header h3,
+.checkout-header h3 {
+  font-size: 1.75rem;
+  line-height: 1.1;
+}
+
+.checkout-body p,
+.checkout-body strong,
+.checkout-body span,
+.checkout-body label,
+.payment-section p,
+.checkout-actions button,
+.checkout-body .pix-info {
+  font-size: 1rem;
+}
+
+/* Ensure add-button doesn't become oversized */
+.product-card button.has-icon { padding: 4px; min-width: 40px; border-radius:6px; }
+
+
+/* Location extra three columns */
+.location-extra .info-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+.location-extra .info-columns .col {
+  background: rgba(255,255,255,0.7);
+  padding: 12px;
+  border-radius: 6px;
+}
+
+/* Hero signature style and countdown */
+.hero-countdown {
+  margin: 10px 0 16px;
+  font-size: 19px;
+  color: var(--text-muted, #5a6d5a);
+}
+.hero-small { font-family: 'Cormorant Garamond', serif; font-size: 37px; }
+.hero-signature { font-family: 'Revive80Signature', 'Great Vibes', serif; font-size: 70px; display: inline-block; }
+
+/* Adjust only the hero area: make signature (Ana e João) larger and "Casamento de" smaller */
+.hero .hero-small { font-size: 18.0px; }
+.hero .hero-signature { font-size: 110px; display: inline-block; }
+
+@media (min-width: 1200px) {
+  .hero .hero-signature { font-size: 150px; }
+}
+@media (min-width: 1600px) {
+  .hero .hero-signature { font-size: 180px; }
+}
+@media (max-width: 720px) {
+  .hero .hero-signature { font-size: 90px; }
+  .hero .hero-small { font-size: 19px; }
+}
+
+/* Specific reduction for the “Sugestão de trajes” title only */
+.location-extra .info-columns .col:nth-child(2) h3.title-garamond {
+  font-size: 20px;
+}
+
+/* Title font overrides */
+#sobre .title-garamond {
+  font-family: 'Revive80Signature', 'Great Vibes', cursive;
+  /* Match other increased headings: 70px * 1.3 ≈ 91px */
+  font-size: 91px;
+}
+
+#localizacao .hero-signature,
+#presentes .hero-signature,
+#faq .hero-signature {
+  font-family: 'Revive80Signature', 'Great Vibes', cursive;
+  /* 70px * 1.3 ≈ 91px */
+  font-size: 91px;
+}
+
+#rsvp .title-garamond {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Force subtitle to break line like hero's "Casamento de" */
+#localizacao .subtitle-garamond,
+#faq .subtitle-garamond {
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Remove +/- markers */
+summary::after,
+details[open] summary::after {
+  content: "";
+}
+
+/* Footer brand as plain text */
+.brand-mark.footer-brand {
+  width: auto;
+  height: auto;
+  display: inline-block;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  color: var(--primary);
+  font-family: 'Revive80Signature', 'Great Vibes', cursive;
+  font-size: 2rem;
+}
+
+@media (max-width: 920px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr); }
+  .about-grid { grid-template-columns: 1fr; text-align: left; }
+  .location-extra .info-columns { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero .hero-signature { font-size: 90px; }
+  .hero .hero-small { font-size: 19px; }
+}

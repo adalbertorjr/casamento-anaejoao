@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casamento Ana & João</title>
+  <title>Casamento Ana e João</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=1.3" />
+  <link rel="stylesheet" href="overrides.css?v=1" />
 </head>
 <body>
   <!-- Corner decorative leaves background -->
@@ -29,12 +30,12 @@
   <main>
     <section class="hero">
       <div class="hero-content">
-        <span class="hero-label">Nosso amor merece uma celebração</span>
-        <h2>Casamento de <br> Ana & João</h2>
-        <p>Obrigado por visitar nossa página. Aqui você pode escolher um presente simbólico e contribuir com nosso sonho sem taxas de intermediários.</p>
+        <h2>        <span class="hero-small title-garamond">Casamento de</span><br>
+          <span class="hero-signature">Ana e João</span>
+        </h2>
+        <div id="countdown" class="hero-countdown" aria-hidden="false"></div>
         <div class="hero-meta">
-          <span>20 de setembro de 2026</span>
-          <span>Laggus Residencial Náutico</span>
+          <span>20/09/2026</span>
         </div>
         <a class="button-primary" href="#presentes">Ver presentes</a>
       </div>
@@ -45,43 +46,31 @@
 
     <section id="sobre" class="section about">
       <div class="section-header">
-        <span>Nosso conto</span>
-        <h2>Sobre Ana e João</h2>
+        <h2 class="title-garamond">Sobre nosso amor</h2>
       </div>
       <div class="about-grid">
-        <div class="about-text">
-          <p>A história começou com olhares trocados, risadas e planos compartilhados. Agora, convidamos você para ser parte desta fase incrível da nossa vida.</p>
-          <p>Ao invés de presentes tradicionais, criamos uma loja simbólica para que nossos convidados possam escolher contribuições especiais para o casal.</p>
+        <div class="about-image">
+          <img src="images/foto02.jpg" alt="Foto do casal 2" />
         </div>
-        <div class="about-details">
-          <div>
-            <strong>Data</strong>
-            <p>20 de setembro de 2026, às 10:30h (Domingo)</p>
-          </div>
-          <div>
-            <strong>Local</strong>
-            <p>Laggus Residencial Náutico — Campo Largo, PR</p>
-          </div>
-          <div>
-            <strong>Estilo</strong>
-            <p>Cerimônia romântica com almoço e festa.</p>
-          </div>
+        <div class="about-details about-text-right">
+          <p>Há alegrias que são grandes demais para permanecerem apenas entre duas pessoas. Algumas bênçãos, quando chegam, transformam a vida de tal maneira que pedem partilha, encontro e celebração.</p>
+          <p>Nós nos alegramos e temos profunda gratidão por tudo aquilo que temos vivido juntos. Somos gratos às nossas famílias que nos acolhem e aos amigos que caminham junto conosco. Nos alegramos por cada momento vivido e por isso nosso casamento é motivo de festa.</p>
+          <p>Para que possamos compartilhar essa felicidade com todos, vamos celebrar juntos no dia 20 de setembro!</p>
         </div>
       </div>
     </section>
 
     <section id="localizacao" class="section location">
       <div class="section-header">
-        <span>Como chegar</span>
-        <h2>Local do Evento</h2>
+        <span class="subtitle-garamond">Como chegar</span>
+        <h2 class="hero-signature">Local do Evento</h2>
       </div>
       <div class="location-grid">
         <div class="location-info">
-          <img src="images/desenho_mapa.jpeg" alt="Ilustração do Laggus Residencial Náutico" class="venue-illustration" />
+          <img src="images/foto03.jpg" alt="Foto do local - Laggus Residencial Náutico" class="venue-illustration" />
           <div class="location-text">
             <h3>Laggus Residencial Náutico</h3>
             <p class="address">Rua Silvio Dallagrana, 8000 — Campo Largo, PR</p>
-            <p>A cerimônia iniciará pontualmente às <strong>10:30h</strong> do dia <strong>20 de setembro de 2026</strong>. Recomendamos que os convidados se organizem para chegar com cerca de 15 minutos de antecedência para apreciar a bela paisagem à beira do lago e se acomodarem confortavelmente.</p>
             <a href="https://maps.app.goo.gl/ynVdtyk14VEHixQLA" target="_blank" rel="noopener" class="button-secondary map-link">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="map-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
               Abrir no Google Maps
@@ -100,12 +89,23 @@
           </iframe>
         </div>
       </div>
+
+      <div class="location-extra three-columns section">
+        <div class="info-columns">
+          <div class="col">Queremos que vocês se sintam confortáveis e felizes para celebrar esse momento conosco. Como iremos festejar em uma chácara, sugerimos roupas leves e sapatos confortáveis.</div>
+        <div class="col" style="text-align:center;"><h3 class="title-garamond">Sugestão de trajes</h3>
+          <img src="images/Picture1.png" alt="Ilustração de sugestões de trajes" style="max-width:100%;height:auto;border-radius:6px;margin-top:12px;" />
+        </div>
+        <div class="col">A cerimônia começará no domingo pela manhã (10h30), no deck da Laggus e logo após o término seguiremos todos para o Espaço de Eventos, para o almoço; aproveitaremos a tarde com muitas conversas, risadas, jogos, dança, comidas e bebidas, até o início da noite (20h);</div>
+        </div>
+      </div>
+
     </section>
 
     <section id="presentes" class="section gifts">
       <div class="section-header">
-        <span>Escolha com carinho</span>
-        <h2>Loja de presentes</h2>
+        <span class="subtitle-garamond">Escolha com carinho</span><br>
+        <h2 class="hero-signature">Loja de presentes</h2>
       </div>
       <p class="section-intro">Cada item representa um gesto de apoio: ao final, vamos receber apenas o valor como doação, sem taxa de venda.</p>
       <div id="productsGrid" class="products-grid"></div>
@@ -173,39 +173,39 @@
 
     <section id="rsvp" class="section rsvp">
       <div class="section-header">
-        <span>Confirme sua presença</span>
-        <h2>RSVP</h2>
+        <span class="subtitle-garamond">Confirme sua presença</span>
+        <h2 class="title-garamond">RSVP</h2>
       </div>
-      <div class="rsvp-content">
-        <p>Se você deseja confirmar presença ou enviar mensagem ao casal, use o e-mail abaixo ou fale diretamente com nossos padrinhos.</p>
-        <a href="mailto:contato@casamentoexemplo.com" class="button-secondary">Enviar mensagem</a>
+      <div class="rsvp-content body-text">
+        <p>Por favor, confirme a sua presença pelo WhatsApp que você recebeu o convite até dia <strong>10 de agosto de 2026</strong>. A não confirmação até essa data será entendida como recusa do convite.</p>
+        <a href="https://wa.me/5541997273744" target="_blank" rel="noopener" class="button-secondary">Confirmar pelo WhatsApp</a>
       </div>
     </section>
 
     <section id="faq" class="section faq">
       <div class="section-header">
-        <span>Dúvidas</span>
-        <h2>Perguntas frequentes</h2>
+        <span class="subtitle-garamond">Dúvidas</span>
+        <h2 class="hero-signature">Perguntas frequentes</h2>
       </div>
       <div class="faq-list">
-        <details>
-          <summary>Os presentes são reais?</summary>
-          <p>Não. Os itens são simbólicos. Ao final usaremos o valor total como uma contribuição financeira para a vida do casal.</p>
-        </details>
         <details>
           <summary>Como funciona o PIX?</summary>
           <p>Ao escolher PIX, você recebe uma chave e um QR code. Basta pagar pelo app do seu banco e enviar o comprovante.</p>
         </details>
         <details>
           <summary>Posso enviar um presente presencialmente?</summary>
-          <p>Sim, entre em contato pelo e-mail e combinamos o melhor jeito para receber sua mensagem e carinho.</p>
+          <p>Sim! Todos os presentes são muito bem-vindos. Você pode levar no dia e entregar para a nossa cerimonialista.</p>
+        </details>
+        <details>
+          <summary>Posso convidar alguém?</summary>
+          <p>Não... infelizmente o número de convidados é limitado e não podemos chamar mais pessoas.</p>
         </details>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="brand-mark" style="margin: 0 auto 16px;">A & J</div>
+    <div class="brand-mark footer-brand">Ana e João</div>
     <p>Obrigado por fazer parte dessa história. 💍</p>
   </footer>
 
