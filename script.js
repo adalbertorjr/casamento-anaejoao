@@ -406,6 +406,11 @@ function initializeEvents() {
     sendWhatsAppButton.addEventListener('click', sendOrderWhatsApp);
   }
   closeSuccessButton.addEventListener("click", closeCheckout);
+
+  const rsvpButton = document.getElementById('sendRSVPButton');
+  if (rsvpButton) {
+    rsvpButton.addEventListener('click', sendRSVPWhatsApp);
+  }
 }
 
 if ('scrollRestoration' in history) {
@@ -440,6 +445,19 @@ window.addEventListener('load', ()=>{ enhanceAddButtons(); });
 updateCartCount();
 renderCart();
 initializeEvents();
+function sendRSVPWhatsApp() {
+  const input = document.getElementById('rsvpName');
+  const name = input ? input.value.trim() : '';
+  if (!name) {
+    alert('Por favor, digite seu nome antes de confirmar.');
+    if (input) input.focus();
+    return;
+  }
+  const number = '5541996114694';
+  const text = `Olá Ana e João! 💚\n\nAqui é ${name}. Estou confirmando presença no casamento de vocês! Mal posso esperar para celebrar esse momento especial. 🙏`;
+  window.open(`https://wa.me/${number}?text=${encodeURIComponent(text)}`, '_blank');
+}
+
 // Countdown to wedding (20 Sep 2026)
 (function setupCountdown(){
   const el = document.getElementById('countdown');

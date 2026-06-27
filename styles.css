@@ -1077,6 +1077,23 @@ button {
   gap: 24px;
 }
 
+.rsvp-input {
+  border: 1px solid rgba(31, 77, 31, 0.14);
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 16px 18px;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rsvp-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--surface);
+  box-shadow: 0 0 0 4px rgba(31, 77, 31, 0.1);
+}
+
 .faq {
   background: var(--surface);
 }
