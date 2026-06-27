@@ -3,7 +3,7 @@ const products = [
   { id: 'kitchenaid', name: 'Kitchenaid', price: 288.00, description: 'Cota para o noivo ter a tão sonhada Batedeira orbital da Kitchenaid' },
   { id: 'passagem-argentina', name: 'Passagem para Argentina', price: 563.00, description: 'Para que os noivos não precisem ir de carona' },
   { id: 'aliancas', name: 'Alianças de Casamento', price: 178.00, description: 'Ajude no símbolo da nossa união' },
-  { id: 'lava-seca', name: 'Lava e seca', price: 288.00, description: 'Cota para a noiva ter a tão sonhada Lava e seca' },
+  { id: 'lava-seca', name: 'Lava e seca', price: 290.00, description: 'Cota para a noiva ter a tão sonhada Lava e seca' },
   { id: 'aquecedor', name: 'Aquecedor', price: 124.00, description: 'Contra o frio de Curitiba' },
   { id: 'cobertor', name: 'Cobertor', price: 159.00, description: 'Para a noiva que está sempre coberta de razão' },
   { id: 'primeiro-lugar-fila', name: 'Primeiro lugar na fila', price: 411.00, description: 'Privilégio de se servir por primeiro no buffet do casamento' },
@@ -215,17 +215,21 @@ function crc16Ccitt(str){
 }
 
 function buildEMVPixPayload(pixKey, merchantName='ANA E JOAO', merchantCity='CAMPO LARGO', amount){
-  // Based on BR Lgpd / EMV static structure commonly used for PIX QR
+  // EMV PIX payload for dynamic QR codes with amount
   const gui = tlv('00','BR.GOV.BCB.PIX');
   const key = tlv('01',pixKey);
   const mai = tlv('26', gui + key);
 
   const merchantCategory = tlv('52','0000');
-  const currency = tlv('53','986');
-  const amountField = amount ? tlv('54', amount.toFixed(2)) : '';
+  const currency = tlv('53','986'); // BRL
+  // Format amount as decimal: "1.50" not "1,50"
+  const amountField = amount ? tlv('54', amount.toFixed(2).replace(',', '.')) : '';
   const country = tlv('58','BR');
-  const mName = tlv('59', merchantName.substring(0,25));
-  const mCity = tlv('60', merchantCity.substring(0,15));
+  const mName = tlv('59', merchantName.substring(0,25).toUpperCase());
+  const mCity = tlv('60', merchantCity.substring(0,15).toUpperCase());
+  
+  // Unique ID for this transaction (required by many banks)
+  const txnId = tlv('62', tlv('05', Math.random().toString(36).substr(2, 8).toUpperCase()));
 
   let payload = '';
   payload += tlv('00','01'); // payload format indicator
@@ -237,9 +241,10 @@ function buildEMVPixPayload(pixKey, merchantName='ANA E JOAO', merchantCity='CAM
   payload += country;
   payload += mName;
   payload += mCity;
+  payload += txnId;
 
-  // CRC placeholder
-  payload += '63' + '04';
+  // CRC16 checksum
+  payload += '6304'; // tag 63, length 04
   const crc = crc16Ccitt(payload);
   payload += crc;
   return payload;

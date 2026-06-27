@@ -12,7 +12,7 @@
 /* Set base fonts: Garamond for body, Revive80Signature for titles/destaques */
 body {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 16px; /* ~12pt for body */
+  font-size: 20px; /* ~20pt for body */
   color: var(--text, #2d3d2d);
 }
 
@@ -25,10 +25,10 @@ h1, h2, h3, h4, h5, .brand-mark, .hero-signature {
 
 /* Garamond title class (28pt ≈ 37px) */
 .title-garamond { font-family: 'Cormorant Garamond', serif; font-size: 37px; }
-/* Subtitles: Garamond 14pt ALLCAPS */
-.subtitle-garamond { font-family: 'Cormorant Garamond', serif; font-size: 19px; text-transform: uppercase; letter-spacing: 0.06em; }
+/* Subtitles: Garamond 16pt ALLCAPS */
+.subtitle-garamond { font-family: 'Cormorant Garamond', serif; font-size: 24px; text-transform: uppercase; letter-spacing: 0.06em; }
 /* Body small adjustments (12pt ≈ 16px) */
-.body-text { font-family: 'Cormorant Garamond', serif; font-size: 16px; }
+.body-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; }
 
 
 @font-face {
@@ -75,7 +75,7 @@ body {
   color: var(--text);
   line-height: 1.8;
   font-family: "Cormorant Garamond", system-ui, serif;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 h1,
@@ -300,8 +300,8 @@ button {
   margin-top: 28px;
   margin-bottom: 24px;
   color: var(--text-muted);
-  font-size: 1.15rem;
-  font-weight: 500;
+  font-size: 1.7rem;
+  font-weight: 1000;
   width: 100%;
 }
 
@@ -335,6 +335,31 @@ button {
   letter-spacing: 0.08em;
   font-size: 0.85rem;
   margin-bottom: 20px;
+}
+
+.hero-countdown {
+  margin: 10px 0 16px;
+  font-size: 24px;
+  color: var(--text-muted, #5a6d5a);
+}
+
+.hero-small {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 37px;
+}
+
+.hero .hero-small {
+  font-size: 21px;
+}
+
+.hero-signature {
+  display: inline-block;
+  font-family: 'Revive80Signature', 'Great Vibes', serif;
+  font-size: 70px;
+}
+
+.hero .hero-signature {
+  font-size: 110px;
 }
 
 .hero h1,
@@ -429,6 +454,28 @@ button {
   line-height: 1.2;
 }
 
+#sobre .title-garamond {
+  font-family: 'Revive80Signature', 'Great Vibes', cursive;
+  font-size: 91px;
+}
+
+#localizacao .hero-signature,
+#presentes .hero-signature,
+#faq .hero-signature {
+  font-family: 'Revive80Signature', 'Great Vibes', cursive;
+  font-size: 91px;
+}
+
+#rsvp .title-garamond {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+#localizacao .subtitle-garamond,
+#faq .subtitle-garamond {
+  display: block;
+  margin-bottom: 6px;
+}
+
 .section-intro {
   color: var(--text-muted);
   max-width: 640px;
@@ -445,9 +492,9 @@ button {
 
 .about-grid {
   display: grid;
-  gap: 36px;
-  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center;
 }
 
 .about-text p {
@@ -455,6 +502,22 @@ button {
   color: var(--text-muted);
   font-size: 1.15rem;
   line-height: 1.8;
+}
+
+.about-image img {
+  width: 70%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.about-text-right {
+  text-align: right;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.about-text-right p {
+  text-align: justify;
 }
 
 .about-details {
@@ -498,8 +561,8 @@ button {
 
 .products-grid {
   display: grid;
-  gap: 28px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
 }
 
 .product-card {
@@ -577,6 +640,12 @@ button {
   transform: translateY(0);
 }
 
+.product-card button.has-icon {
+  min-width: 40px;
+  padding: 4px;
+  border-radius: 6px;
+}
+
 .cart-panel {
   position: fixed;
   right: 0;
@@ -604,6 +673,12 @@ button {
   gap: 24px;
   padding: 28px;
   border-bottom: 1px solid rgba(31, 77, 31, 0.12);
+}
+
+.cart-header h3,
+.checkout-header h3 {
+  font-size: 1.75rem;
+  line-height: 1.1;
 }
 
 .close-button {
@@ -645,7 +720,7 @@ button {
 
 .cart-item h4 {
   margin: 0 0 6px;
-  font-size: 1.15rem;
+  font-size: 14px;
   font-weight: 600;
   color: var(--primary);
 }
@@ -712,12 +787,12 @@ button {
 
 .cart-total span {
   color: var(--text-muted);
-  font-size: 1.1rem;
+  font-size: 14px;
 }
 
 .cart-total strong {
   color: var(--primary);
-  font-size: 1.4rem;
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -825,11 +900,41 @@ button {
   display: none;
 }
 
+.payment-steps {
+  background: var(--surface-soft);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px;
+  border: 1px solid rgba(31, 77, 31, 0.1);
+}
+
+.payment-steps p {
+  margin: 0 0 8px;
+}
+
+.payment-steps ol {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+
+.payment-steps ol li::marker {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.checkout-body .field-group {
+  margin-bottom: 16px;
+}
+
+.checkout-body .field-group input {
+  width: 100%;
+}
+
 .pix-card {
-  display: grid;
-  gap: 20px;
+  display: flex;
+  gap: 12px;
   align-items: center;
-  grid-template-columns: 180px auto;
   padding: 24px;
   border-radius: 24px;
   background: rgba(212, 228, 208, 0.4);
@@ -858,6 +963,30 @@ button {
   display: block;
   color: var(--text-muted);
   margin-bottom: 12px;
+}
+
+.pix-card .pix-info {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+}
+
+#pixTotal {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#pixKey {
+  font-size: 16px;
+}
+
+.checkout-body p,
+.checkout-body strong,
+.checkout-body span,
+.checkout-body label,
+.payment-section p,
+.checkout-actions button,
+.checkout-body .pix-info {
+  font-size: 1rem;
 }
 
 .pix-key-container {
@@ -990,15 +1119,11 @@ summary::-webkit-details-marker {
 }
 
 summary::after {
-  content: "+";
-  font-size: 1.4rem;
-  font-weight: 300;
-  color: var(--accent);
-  transition: transform 0.2s ease;
+  content: "";
 }
 
 details[open] summary::after {
-  content: "\u2212";
+  content: "";
 }
 
 details p {
@@ -1015,6 +1140,19 @@ footer.site-footer {
   color: var(--text-muted);
   border-top: 1px solid rgba(31, 77, 31, 0.08);
   background: var(--surface-soft);
+}
+
+.brand-mark.footer-brand {
+  width: auto;
+  height: auto;
+  display: inline-block;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  color: var(--primary);
+  font-family: 'Revive80Signature', 'Great Vibes', cursive;
+  font-size: 2rem;
 }
 
 @media (max-width: 920px) {
@@ -1100,8 +1238,8 @@ footer.site-footer {
 
 
   .pix-card {
-    grid-template-columns: 1fr;
-    justify-items: center;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
   }
 
@@ -1121,6 +1259,48 @@ footer.site-footer {
   .checkout-card {
     width: 100%;
     border-radius: 24px;
+  }
+}
+
+
+@media (max-width: 920px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .location-extra .info-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero .hero-signature {
+    font-size: 150px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .hero .hero-signature {
+    font-size: 180px;
+  }
+}
+
+@media (max-width: 720px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero .hero-signature {
+    font-size: 90px;
+  }
+
+  .hero .hero-small {
+    font-size: 19px;
   }
 }
 
@@ -1245,6 +1425,23 @@ footer.site-footer {
   display: block;
 }
 
+.location-extra .info-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.location-extra .info-columns .col {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.location-extra .info-columns .col:nth-child(2) h3.title-garamond {
+  font-size: 20px;
+}
+
 @media (max-width: 920px) {
   .location-grid {
     grid-template-columns: 1fr;
@@ -1267,188 +1464,117 @@ footer.site-footer {
   }
 }
 
-/* ===== OVERRIDES (merged from overrides.css) ===== */
-
-/* Products grid: 5 columns on wide screens */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
+/* Ajustes solicitados - seção Sobre */
+.about {
+  padding-top: 56px;
+  padding-bottom: 56px;
 }
 
-/* About section: image left, text right aligned */
 .about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 12px;
   align-items: center;
 }
+
 .about-image img {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-}
-.about-text-right {
-  text-align: right;
-  font-family: 'Cormorant Garamond', serif;
-}
-/* Make paragraph text justified for better visual rhythm */
-.about-text-right p { text-align: justify; }
-
-/* PIX and cart sizing adjustments */
-.pix-card { display:flex; gap:12px; align-items:center; }
-.pix-card .pix-info { font-family: 'Cormorant Garamond', serif; font-size: 14px; }
-#pixTotal { font-size: 16px; font-weight: 600; }
-#pixKey { font-size: 13px; }
-
-/* Cart sizing tweaks */
-.cart-total span { font-size: 14px; }
-.cart-total strong { font-size: 18px; }
-.cart-items .cart-item h4 { font-size: 14px; }
-
-/* Cart + checkout panel heading size fixes */
-.cart-header h3,
-.checkout-header h3 {
-  font-size: 1.75rem;
-  line-height: 1.1;
 }
 
-.checkout-body p,
-.checkout-body strong,
-.checkout-body span,
-.checkout-body label,
-.payment-section p,
-.checkout-actions button,
-.checkout-body .pix-info {
-  font-size: 1rem;
-}
-
-/* Ensure add-button doesn't become oversized */
-.product-card button.has-icon { padding: 4px; min-width: 40px; border-radius:6px; }
-
-
-/* Location extra three columns */
-.location-extra .info-columns {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.about-details {
+  padding: 28px;
   gap: 16px;
-  margin: 24px 0;
-}
-.location-extra .info-columns .col {
-  background: rgba(255,255,255,0.7);
-  padding: 12px;
-  border-radius: 6px;
 }
 
-/* Hero signature style and countdown */
-.hero-countdown {
-  margin: 10px 0 16px;
-  font-size: 19px;
-  color: var(--text-muted, #5a6d5a);
-}
-.hero-small { font-family: 'Cormorant Garamond', serif; font-size: 37px; }
-.hero-signature { font-family: 'Revive80Signature', 'Great Vibes', serif; font-size: 70px; display: inline-block; }
-
-/* Adjust only the hero area: make signature (Ana e João) larger and "Casamento de" smaller */
-.hero .hero-small { font-size: 18.0px; }
-.hero .hero-signature { font-size: 110px; display: inline-block; }
-
-@media (min-width: 1200px) {
-  .hero .hero-signature { font-size: 150px; }
-}
-@media (min-width: 1600px) {
-  .hero .hero-signature { font-size: 180px; }
-}
-@media (max-width: 720px) {
-  .hero .hero-signature { font-size: 90px; }
-  .hero .hero-small { font-size: 19px; }
+.about-details .title-garamond {
+  margin: 0 0 8px;
+  text-align: left;
+  color: var(--primary);
+  line-height: 1;
 }
 
-/* Specific reduction for the "Sugestão de trajes" title only */
-.location-extra .info-columns .col:nth-child(2) h3.title-garamond {
+#sobre .about-details .title-garamond {
+  font-family: 'Revive80Signature', 'Great Vibes', cursive;
+  font-size: 91px;
+}
+
+/* Ajustes solicitados - trajes e RSVP */
+.attire-text p {
+  margin: 0 0 12px;
+}
+
+.attire-text p:last-child {
+  margin-bottom: 0;
+}
+
+.rsvp-content p {
   font-size: 20px;
 }
 
-/* Title font overrides */
-#sobre .title-garamond {
-  font-family: 'Revive80Signature', 'Great Vibes', cursive;
-  font-size: 91px;
+@media (max-width: 920px) {
+  .about {
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
+
+  .about-details .title-garamond,
+  #sobre .about-details .title-garamond {
+    text-align: center;
+    font-size: 72px;
+  }
 }
 
-#localizacao .hero-signature,
-#presentes .hero-signature,
-#faq .hero-signature {
-  font-family: 'Revive80Signature', 'Great Vibes', cursive;
-  font-size: 91px;
+/* Ajustes adicionais solicitados - foto Sobre e blocos mobile */
+#sobre .about-image {
+  display: flex;
+  justify-content: center;
 }
 
-#rsvp .title-garamond {
-  font-family: 'Cormorant Garamond', serif;
-}
-
-/* Force subtitle to break line like hero's "Casamento de" */
-#localizacao .subtitle-garamond,
-#faq .subtitle-garamond {
+#sobre .about-image img {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
   display: block;
-  margin-bottom: 6px;
-}
-
-/* Remove +/- markers */
-summary::after,
-details[open] summary::after {
-  content: "";
-}
-
-/* Footer brand as plain text */
-.brand-mark.footer-brand {
-  width: auto;
-  height: auto;
-  display: inline-block;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
-  color: var(--primary);
-  font-family: 'Revive80Signature', 'Great Vibes', cursive;
-  font-size: 2rem;
 }
 
 @media (max-width: 920px) {
-  .products-grid { grid-template-columns: repeat(3, 1fr); }
-  .about-grid { grid-template-columns: 1fr; text-align: left; }
-  .location-extra .info-columns { grid-template-columns: 1fr; }
+  .location-extra .info-columns {
+    grid-template-columns: 1fr;
+  }
 }
+
+
+/* Ajustes solicitados - rodada 3 */
+.hero .hero-small {
+  font-size: 21px !important;
+}
+
+.section-intro,
+.faq p {
+  font-size: 20px !important;
+}
+
+.cart-item h4,
+.item-meta,
+.item-meta span,
+.quantity-controls button,
+.quantity-controls span,
+.cart-total span,
+.cart-total strong {
+  font-size: 20px !important;
+}
+
+#successTitle,
+#successName {
+  font-size: 42px !important;
+  line-height: 1.1;
+}
+
+#successText {
+  font-size: 20px !important;
+  line-height: 1.6;
+}
+
 @media (max-width: 720px) {
-  .products-grid { grid-template-columns: repeat(2, 1fr); }
-  .hero .hero-signature { font-size: 90px; }
-  .hero .hero-small { font-size: 19px; }
+  .hero .hero-small {
+    font-size: 21px !important;
+  }
 }
-
-/* Checkout steps list */
-.payment-steps {
-  background: var(--surface-soft);
-  border-radius: var(--radius-sm);
-  padding: 20px 24px;
-  border: 1px solid rgba(31, 77, 31, 0.1);
-}
-.payment-steps p { margin: 0 0 8px; }
-.payment-steps ol {
-  margin: 0;
-  padding-left: 20px;
-  color: var(--text-muted);
-  line-height: 1.9;
-}
-.payment-steps ol li::marker {
-  color: var(--primary);
-  font-weight: 600;
-}
-
-/* Name field in checkout */
-.checkout-body .field-group {
-  margin-bottom: 16px;
-}
-.checkout-body .field-group input {
-  width: 100%;
-}
-
