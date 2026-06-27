@@ -313,7 +313,6 @@ function showSuccessMessage(guestName, total) {
   if (textEl) {
     textEl.textContent = `Seu presente de ${totalInfo} vai ajudar a construir o lar que estamos sonhando juntos. Que possamos celebrar muitos momentos especiais ao seu lado. Com todo o nosso carinho, Ana & João. 💚`;
   }
-  logToGoogleSheets(guestName, total, Object.values(cart));
   pixSection.classList.add("hidden");
   if (checkoutHeaderTitle) {
     checkoutHeaderTitle.textContent = "Obrigado!";
