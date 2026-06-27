@@ -288,7 +288,7 @@ function buildOrderText() {
 }
 
 function sendOrderWhatsApp() {
-  const number = '5541997273744';
+  const number = '5541996114694';
   const name = guestNameInput ? guestNameInput.value.trim() : "";
   if (!name) {
     alert("Por favor, digite seu nome antes de enviar.");
