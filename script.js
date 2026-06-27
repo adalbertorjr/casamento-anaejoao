@@ -305,6 +305,22 @@ function sendOrderWhatsApp() {
   showSuccessMessage(name, calculateTotal());
 }
 
+const SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxwRb8delAHu88JLoWjUVEbR0MBhhjqDrNAdMu54_o-g1WGhfQ92AcQb_leEhuFvOkU/exec';
+
+function logToGoogleSheets(guestName, total, items) {
+  if (!SHEETS_WEBAPP_URL) return;
+  const payload = {
+    nome: guestName,
+    itens: items.map(i => `${i.name} x${i.quantity}`).join('; '),
+    total: formatCurrency(total),
+    status: 'Confirmado'
+  };
+  fetch(SHEETS_WEBAPP_URL, {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  }).catch(() => {});
+}
+
 function showSuccessMessage(guestName, total) {
   const totalInfo = formatCurrency(total);
   const nameEl = document.getElementById("successName");
@@ -313,6 +329,7 @@ function showSuccessMessage(guestName, total) {
   if (textEl) {
     textEl.textContent = `Seu presente de ${totalInfo} vai ajudar a construir o lar que estamos sonhando juntos. Que possamos celebrar muitos momentos especiais ao seu lado. Com todo o nosso carinho, Ana & João. 💚`;
   }
+  logToGoogleSheets(guestName, total, Object.values(cart));
   pixSection.classList.add("hidden");
   if (checkoutHeaderTitle) {
     checkoutHeaderTitle.textContent = "Obrigado!";
