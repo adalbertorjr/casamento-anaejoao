@@ -454,7 +454,7 @@ function sendRSVPWhatsApp() {
     return;
   }
   const number = '5541984526515';
-  const text = `Olá Ana e João! Aqui é ${name}. Estou confirmando presenca no casamento de voces! Mal posso esperar para celebrar esse momento especial.`;
+  const text = `Olá Ana e João! Aqui é ${name}. Estou confirmando presença no casamento de voces! Mal posso esperar para celebrar esse momento especial.`;
   window.open(`https://wa.me/${number}?text=${encodeURIComponent(text)}`, '_blank');
 }
 
