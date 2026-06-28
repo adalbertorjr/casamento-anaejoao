@@ -1321,6 +1321,12 @@ footer.site-footer {
   }
 }
 
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Decorative corner leaves */
 .decor-leaf {
   position: fixed;
@@ -1457,6 +1463,44 @@ footer.site-footer {
 
 .location-extra .info-columns .col:nth-child(2) h3.title-garamond {
   font-size: 20px;
+}
+
+.traje-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.traje-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+}
+
+.traje-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.traje-text h3 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.traje-text p {
+  margin: 0;
+}
+
+@media (max-width: 920px) {
+  .traje-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
 
 @media (max-width: 920px) {

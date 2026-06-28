@@ -288,7 +288,7 @@ function buildOrderText() {
 }
 
 function sendOrderWhatsApp() {
-  const number = '5541996114694';
+  const number = '5541984526515';
   const name = guestNameInput ? guestNameInput.value.trim() : "";
   if (!name) {
     alert("Por favor, digite seu nome antes de enviar.");
@@ -453,7 +453,7 @@ function sendRSVPWhatsApp() {
     if (input) input.focus();
     return;
   }
-  const number = '5541996114694';
+  const number = '5541984526515';
   const text = `Olá Ana e João! 💚\n\nAqui é ${name}. Estou confirmando presença no casamento de vocês! Mal posso esperar para celebrar esse momento especial. 🙏`;
   window.open(`https://wa.me/${number}?text=${encodeURIComponent(text)}`, '_blank');
 }
