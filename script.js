@@ -23,7 +23,11 @@ const products = [
   { id: 'bons-drinks', name: 'Bons drinks', price: 102.00, description: 'Drinks em Puerto Madero' },
   { id: 'visita-museu', name: 'Visita ao Museu', price: 115.00, description: 'Ingresso pra ver o Abaporu no MALBA' },
   { id: 'visita-bombonera', name: 'Visita a La Bombonera', price: 202.00, description: 'Ingressos para conhecer o estádio e secar os hermanos' },
-  { id: 'cafe-da-tarde', name: 'Café da Tarde', price: 108.00, description: 'Empanadas argentinas e café' }
+  { id: 'cafe-da-tarde', name: 'Café da Tarde', price: 108.00, description: 'Empanadas argentinas e café' },
+  { id: 'jogo-jantar', name: 'Jogo de jantar', price: 789.00, description: 'Para receber amigos e família' },
+  { id: 'mensalidade-faculdade', name: 'Mensalidade de Faculdade', price: 970.00, description: 'Primeira mensalidade do/a filho/a primogênito' },
+  { id: 'enxoval-bebe', name: 'Enxoval do primeiro bebê', price: 1120.00, description: 'Para quando chegar a hora' },
+  { id: 'nome-filho', name: 'Nome do filho', price: 10500.00, description: 'Escolha o nome do primeiro/a filho/a' }
 ];
 
 const cart = {};
