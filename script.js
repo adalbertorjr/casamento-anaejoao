@@ -1,3 +1,8 @@
+// Cloudinary — pegar em: https://cloudinary.com/console → Dashboard
+// Upload preset: Settings → Upload → Upload presets (deve ser "Unsigned")
+const CLOUD_NAME = 'sem1rvri';
+const UPLOAD_PRESET = 'ana-joao';
+
 const products = [
   { id: 'conjunto-panelas', name: 'Conjunto de panelas', price: 349.00, description: 'Para fazer as marmitas da semana' },
   { id: 'kitchenaid', name: 'Kitchenaid', price: 288.00, description: 'Cota para o noivo ter a tão sonhada Batedeira orbital da Kitchenaid' },
@@ -346,6 +351,18 @@ function handleWindowScroll() {
 }
 
 function initializeEvents() {
+  document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      const header = document.querySelector('.site-header');
+      const offset = header ? header.offsetHeight : 100;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
   productsGrid.addEventListener("click", (event) => {
     const button = event.target.closest("button[data-product-id]");
     if (!button) return;
@@ -415,6 +432,24 @@ function initializeEvents() {
   if (rsvpButton) {
     rsvpButton.addEventListener('click', sendRSVPWhatsApp);
   }
+
+  const photoInput = document.getElementById('photoInput');
+  if (photoInput) {
+    photoInput.addEventListener('change', handlePhotoInput);
+  }
+
+  const photoGalleryInput = document.getElementById('photoGalleryInput');
+  if (photoGalleryInput) {
+    photoGalleryInput.addEventListener('change', handlePhotoInput);
+  }
+
+  const retryButton = document.getElementById('retryPhotoButton');
+  if (retryButton) {
+    retryButton.addEventListener('click', () => {
+      const input = document.getElementById('photoInput');
+      if (input) input.click();
+    });
+  }
 }
 
 if ('scrollRestoration' in history) {
@@ -460,6 +495,47 @@ function sendRSVPWhatsApp() {
   const number = '5541984526515';
   const text = `Olá Ana e João! Aqui é ${name}. Estou confirmando presença no casamento de voces! Mal posso esperar para celebrar esse momento especial.`;
   window.open(`https://wa.me/${number}?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function uploadPhoto(file) {
+  const status = document.getElementById('photoStatus');
+  const loading = document.getElementById('photoLoading');
+  const success = document.getElementById('photoSuccess');
+  const error = document.getElementById('photoError');
+
+  status.classList.remove('hidden');
+  loading.classList.remove('hidden');
+  success.classList.add('hidden');
+  error.classList.add('hidden');
+
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', UPLOAD_PRESET);
+
+  fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
+    method: 'POST',
+    body: formData
+  })
+    .then(res => {
+      if (!res.ok) throw new Error('Upload failed');
+      return res.json();
+    })
+    .then(data => {
+      loading.classList.add('hidden');
+      success.classList.remove('hidden');
+      console.log('Upload OK:', data.secure_url, data);
+    })
+    .catch(err => {
+      console.error('Upload error:', err);
+      loading.classList.add('hidden');
+      error.classList.remove('hidden');
+    });
+}
+
+function handlePhotoInput(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  uploadPhoto(file);
 }
 
 // Countdown to wedding (20 Sep 2026)

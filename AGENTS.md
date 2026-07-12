@@ -31,6 +31,7 @@ ana-e-joao/
 - **Carrinho**: Drawer deslizante com quantidades e total
 - **Checkout**: Modal PIX com QR code dinâmico e chave copiável
 - **RSVP**: Confirmação via WhatsApp
+- **Fotos**: Upload de fotos dos convidados direto pra nuvem (Cloudinary)
 - **FAQ**: Accordion de perguntas frequentes
 - **Rodapé**: Agradecimento
 
