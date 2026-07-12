@@ -463,7 +463,8 @@ button {
 
 #localizacao .hero-signature,
 #presentes .hero-signature,
-#faq .hero-signature {
+#faq .hero-signature,
+#fotos .hero-signature {
   font-family: 'Revive80Signature', 'Great Vibes', cursive;
   font-size: 91px;
 }
