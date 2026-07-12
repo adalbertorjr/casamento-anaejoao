@@ -473,7 +473,8 @@ button {
 }
 
 #localizacao .subtitle-garamond,
-#faq .subtitle-garamond {
+#faq .subtitle-garamond,
+#fotos .subtitle-garamond {
   display: block;
   margin-bottom: 6px;
 }
