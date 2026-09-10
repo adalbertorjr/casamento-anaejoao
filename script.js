@@ -267,12 +267,23 @@ function updatePixSection() {
   if (!pixQrImage) return;
   const pixKey = document.getElementById('pixKey') ? document.getElementById('pixKey').textContent.trim() : '09723193957';
   const payload = buildEMVPixPayload(pixKey, 'ANA E JOAO', 'CAMPO LARGO', total);
-  const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(payload)}`;
-  pixQrImage.src = qrApi;
-  pixQrImage.style.display = 'block';
+  renderPixQrCode(payload);
 }
 
-// remove drawPixQrCode - static image used
+// Gera o QR code localmente (sem depender de API externa, que pode ser
+// bloqueada por bloqueadores de conteúdo do Safari/iOS).
+function renderPixQrCode(payload) {
+  pixQrImage.innerHTML = '';
+  const qr = qrcode(0, 'M');
+  qr.addData(payload);
+  qr.make();
+  pixQrImage.innerHTML = qr.createSvgTag({ scalable: true });
+  const svg = pixQrImage.querySelector('svg');
+  if (svg) {
+    svg.style.width = '100%';
+    svg.style.height = '100%';
+  }
+}
 
 
 function confirmPixPayment() {
