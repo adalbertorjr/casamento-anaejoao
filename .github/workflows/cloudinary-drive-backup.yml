@@ -1,0 +1,44 @@
+name: Backup de fotos Cloudinary -> Google Drive
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Se true, copia para o Drive mas NÃO apaga do Cloudinary"
+        type: boolean
+        default: false
+  schedule:
+    # Cadência leve nos dias antes do casamento: 1x por dia, 09:00 no horário
+    # de Brasília (12:00 UTC).
+    - cron: "0 12 * * *"
+    # Dia do casamento (20/09/2026), a cada 2h, cobrindo o dia inteiro no
+    # horário de Brasília (UTC-3). Horário de Brasília 00:00-23:59 do dia 20
+    # corresponde a 20/09 03:00 UTC até 21/09 02:59 UTC.
+    - cron: "0 3-23/2 20 9 *"
+    - cron: "0 1 21 9 *"
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Instalar rclone
+        run: curl https://rclone.org/install.sh | sudo bash
+
+      - name: Rodar backup
+        env:
+          CLOUDINARY_CLOUD_NAME: sem1rvri
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+          DRIVE_REMOTE_PATH: "gdrive:CasamentoAnaJoao/Fotos"
+          DRY_RUN: ${{ inputs.dry_run || 'false' }}
+          RCLONE_CONFIG_GDRIVE_TYPE: drive
+          RCLONE_CONFIG_GDRIVE_TOKEN: ${{ secrets.RCLONE_TOKEN }}
+        run: node scripts/cloudinary-backup.mjs
